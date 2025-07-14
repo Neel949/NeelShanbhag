@@ -38,6 +38,12 @@ h1 {
 }
 
 /* Projects Section */
+#projects {
+  background: #f3f4f6;
+  border-radius: 10px;
+  padding: 2rem;
+}
+
 #projects h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -63,6 +69,12 @@ h1 {
   background-color: #1d4ed8;
 }
 
+/* Project Grid */
+.projects-grid.auto-expand .project-details {
+  max-height: 500px;
+  opacity: 1;
+}
+
 /* Individual Project */
 .project {
   background: white;
@@ -71,6 +83,12 @@ h1 {
   margin-bottom: 2rem;
   padding: 1.5rem 2rem;
   position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
 .project-header {
@@ -131,6 +149,10 @@ h1 {
 
 /* Details */
 .project-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
   margin-top: 1rem;
   padding-top: 0.75rem;
   border-top: 1px solid #e5e7eb;
@@ -139,14 +161,40 @@ h1 {
   font-size: 0.95rem;
 }
 
+/* Active details class */
+.project-details.show {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* Avatar Animation */
+.avatar {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: transform, opacity;
+}
+
+/* Footer */
+footer {
+  margin-top: 4rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
   .project-header {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .toggle-details {
     align-self: flex-start;
     margin-top: 0.5rem;
   }
 }
+
