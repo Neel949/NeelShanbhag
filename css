@@ -1,13 +1,16 @@
-/* ==== Root colours ==== */
+/* ===== Colour palette ===== */
 :root{
+  /* blue gradient accents */
   --blue:#3abff8;
   --blue-light:#a3dcff;
 
+  /* editor chrome */
   --editor-bg:#e6e8eb;
   --line-num:#9da2a6;
   --code-bg:#ffffff;
   --border:#d4d7da;
 
+  /* syntax */
   --tag:var(--blue);
   --attr:#25c2b7;
   --val:#ffb454;
@@ -16,11 +19,11 @@
   --sel:rgba(58,191,248,.25);
 }
 
-/* ==== Global reset ==== */
+/* ===== Global reset ===== */
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins','Segoe UI',sans-serif}
 body{background:#0d0d0d;padding:2rem;display:flex;justify-content:center;color:#e5e7eb}
 
-/* ==== Editor wrapper ==== */
+/* ===== Editor frame ===== */
 .editor-wrapper{
   width:min(100%,900px);
   background:var(--editor-bg);
@@ -30,7 +33,7 @@ body{background:#0d0d0d;padding:2rem;display:flex;justify-content:center;color:#
   box-shadow:0 10px 24px rgba(0,0,0,.65);
 }
 
-/* Header bar */
+/* header bar ‑ macOS traffic‑lights */
 .editor-header{
   display:flex;gap:.5rem;align-items:center;
   height:28px;padding:0 1rem;background:var(--editor-bg);
@@ -40,12 +43,12 @@ body{background:#0d0d0d;padding:2rem;display:flex;justify-content:center;color:#
 .editor-header .dot:nth-child(2){background:#ffbd2e}
 .editor-header .dot:nth-child(3){background:#27c93f}
 
-/* ==== Code area ==== */
+/* ===== Code pane ===== */
 pre[class*="language-"]{
   position:relative;
   margin:0;
   background:var(--code-bg);
-  padding:1.25rem 0 1.25rem 3.75rem;
+  padding:1.25rem 0 1.25rem 3.75rem; /* room for line numbers */
   overflow:auto;
   font-size:.875rem;
   line-height:1.55;
@@ -53,7 +56,7 @@ pre[class*="language-"]{
 pre code{color:var(--plain)}
 pre code::selection{background:var(--sel)}
 
-/* line numbers column */
+/* line‑numbers column (Prism plugin generates .line-numbers-rows) */
 .line-numbers .line-numbers-rows{
   border-right:1px solid var(--border);
 }
@@ -61,14 +64,16 @@ pre code::selection{background:var(--sel)}
   color:var(--line-num)!important;
 }
 
-/* Prism overrides */
+/* Prism token colours override default theme */
 .token.tag,.token.keyword{color:var(--tag)}
 .token.attr-name{color:var(--attr)}
 .token.attr-value,.token.string{color:var(--val)}
 .token.comment{color:var(--comm);font-style:italic}
 .token.operator,.token.punctuation{color:var(--plain)}
 
+/* Mobile font size */
 @media(max-width:600px){
   pre[class*="language-"]{padding-left:3.25rem;font-size:.8rem}
 }
+
 
