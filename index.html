@@ -8,25 +8,30 @@
   <!-- Custom styles -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Prism for syntax highlighting -->
-  <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism.css" />
-  <script defer src="https://unpkg.com/prismjs@1.29.0/components/prism-core.min.js"></script>
-  <script defer src="https://unpkg.com/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-  <script defer src="https://unpkg.com/prismjs@1.29.0/components/prism-markup.min.js"></script>
-  <script defer src="https://unpkg.com/prismjs@1.29.0/components/prism-css.min.js"></script>
+  <!-- Prism for lightweight syntax highlighting -->
+  <link rel="stylesheet"
+        href="https://unpkg.com/prismjs@1.29.0/themes/prism.css" />
+  <script defer
+          src="https://unpkg.com/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script defer
+          src="https://unpkg.com/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script defer
+          src="https://unpkg.com/prismjs@1.29.0/components/prism-markup.min.js"></script>
+  <script defer
+          src="https://unpkg.com/prismjs@1.29.0/components/prism-css.min.js"></script>
 </head>
 
 <body>
-  <!-- ===== Editor chrome ===== -->
+  <!-- ===== Fake‑editor wrapper ===== -->
   <div class="editor-wrapper">
     <div class="editor-header">
       <span class="dot"></span><span class="dot"></span><span class="dot"></span>
     </div>
 
-    <!-- ===== “Code” area with your real HTML ===== -->
+    <!-- ===== Real page content lives inside the <pre> so it’s highlighted ===== -->
     <pre class="language-markup line-numbers" data-line>
 <code>
-<!-- START REAL CONTENT -->
+<!-- Hero Section -->
 <section class="hero">
   <div class="hero-text">
     <p class="intro">Hi, my name is</p>
@@ -122,13 +127,47 @@
 <footer>
   <p>© 2025 Neel Shanbhag. All rights reserved.</p>
 </footer>
-<!-- END REAL CONTENT -->
 </code></pre>
   </div>
 
-  <!-- Compiled JS will be dropped here by parcel/tsc -->
-  <script src="main.js"></script>
+  <!-- ===== Inline script (was TypeScript, now plain JS) ===== -->
+  <script>
+    /* Toggle a single project */
+    document.querySelectorAll('.toggle-details').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const details = document.getElementById(btn.getAttribute('aria-controls'));
+        btn.setAttribute('aria-expanded', (!expanded).toString());
+        details.hidden = expanded;
+        btn.textContent = expanded ? '+' : '−';
+      });
+    });
+
+    /* Expand / collapse all */
+    const expandAllBtn = document.getElementById('expandAllBtn');
+    expandAllBtn.addEventListener('click', () => {
+      const isExpanded = expandAllBtn.getAttribute('aria-expanded') === 'true';
+      expandAllBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+      expandAllBtn.textContent = isExpanded ? 'Expand All' : 'Collapse All';
+
+      document.querySelectorAll('.project-details').forEach(d => (d.hidden = isExpanded));
+      document.querySelectorAll('.toggle-details').forEach(b => {
+        b.setAttribute('aria-expanded', (!isExpanded).toString());
+        b.textContent = isExpanded ? '+' : '−';
+      });
+    });
+
+    /* Avatar fade / scale on scroll */
+    document.addEventListener('scroll', () => {
+      const avatar = document.querySelector('.avatar');
+      const heroHeight = document.querySelector('.hero').offsetHeight;
+      const prog   = Math.min(window.scrollY / heroHeight, 1);
+      avatar.style.opacity   = (1 - prog).toString();
+      avatar.style.transform = \`scale(\${1 - prog * 0.5}) translateX(\${prog * 80}vw)\`;
+    });
+  </script>
 </body>
 </html>
+
 
 
