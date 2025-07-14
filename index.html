@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neel Shanbhag - Research Projects</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Hi, my name is <span class="highlight-name">Neel Shanbhag.</span></h1>
+    <p class="intro-text">
+      I'm a rising senior at Illinois Mathematics and Science Academy who is interested in game theory, supply chain, and cryptocurrency regulation.
+    </p>
+  </header>
+
+  <main>
+    <section id="projects">
+      <h2><strong>Projects</strong></h2>
+      <button id="expandAllBtn" aria-expanded="false">Expand All</button>
+
+      <article class="project">
+        <div class="project-header">
+          <div class="top-left-label">IABE 2025 - IJBR 2025</div>
+          <h3><strong>Deception using social media for cryptocurrency fraud</strong></h3>
+          <button class="toggle-details" aria-expanded="false" aria-controls="proj1-details">+</button>
+        </div>
+        <div class="project-summary">
+          <p><strong>Keywords:</strong> Decentralized finance, cryptocurrency exchange failures, market manipulation</p>
+          <p class="short-desc">Explores how social media platforms are exploited to manipulate cryptocurrency markets and cause fraud.</p>
+        </div>
+        <div id="proj1-details" class="project-details" hidden>
+          <p>Presented orally at the IABE conference 2025 and accepted for publication in the International Journal of Business Research.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-header">
+          <div class="top-left-label">ICAEB 2025</div>
+          <h3><strong>Primal-Dual Optimization for Supply-Chains</strong></h3>
+          <button class="toggle-details" aria-expanded="false" aria-controls="proj2-details">+</button>
+        </div>
+        <div class="project-summary">
+          <p><strong>Keywords:</strong> Supply chain management, stochastic modeling, supply chain optimization</p>
+          <p class="short-desc">Investigates novel primal-dual approaches to optimize supply chain performance under uncertainty.</p>
+        </div>
+        <div id="proj2-details" class="project-details" hidden>
+          <p>Accepted to ICAEB 2025.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-header">
+          <div class="top-left-label">ICML 2025</div>
+          <h3><strong>Data Cartography for impartial LLM Evaluation</strong></h3>
+          <button class="toggle-details" aria-expanded="false" aria-controls="proj3-details">+</button>
+        </div>
+        <div class="project-summary">
+          <p><strong>Keywords:</strong> LLM safety, pruning, visualization</p>
+          <p class="short-desc">Develops a framework for visualizing and evaluating large language models for safety and performance.</p>
+        </div>
+        <div id="proj3-details" class="project-details" hidden>
+          <p>Accepted to the 42nd International Conference on Machine Learning; Youngest invitee in ICML history.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-header">
+          <div class="top-left-label">Ongoing Research</div>
+          <h3><strong>Economics behind high density energy storage for sodium-ion battery</strong></h3>
+          <button class="toggle-details" aria-expanded="false" aria-controls="proj4-details">+</button>
+        </div>
+        <div class="project-summary">
+          <p><strong>Keywords:</strong> Density storage optimization, material science, microeconomics</p>
+          <p class="short-desc">Analyzing the economic factors and material science behind optimizing sodium-ion battery energy density.</p>
+        </div>
+        <div id="proj4-details" class="project-details" hidden>
+          <p>Currently in progress.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    // Toggle individual project details
+    document.querySelectorAll('.toggle-details').forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const details = document.getElementById(button.getAttribute('aria-controls'));
+        button.setAttribute('aria-expanded', !expanded);
+        details.hidden = expanded;
+        button.textContent = expanded ? '+' : '−';
+      });
+    });
+
+    // Expand/Collapse all functionality
+    const expandAllBtn = document.getElementById('expandAllBtn');
+    expandAllBtn.addEventListener('click', () => {
+      const isExpanded = expandAllBtn.getAttribute('aria-expanded') === 'true';
+      expandAllBtn.setAttribute('aria-expanded', !isExpanded);
+      expandAllBtn.textContent = isExpanded ? 'Expand All' : 'Collapse All';
+
+      document.querySelectorAll('.project-details').forEach(details => {
+        details.hidden = isExpanded;
+      });
+      document.querySelectorAll('.toggle-details').forEach(button => {
+        button.setAttribute('aria-expanded', !isExpanded);
+        button.textContent = isExpanded ? '+' : '−';
+      });
+    });
+  </script>
+</body>
+</html>
